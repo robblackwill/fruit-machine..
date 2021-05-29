@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+    <script src="./assets/js/animationFn.js" defer></script>
+    <script src="./assets/js/playField.js" defer></script>
+    <script src="./assets/js/rules.js" defer></script>
+    <script src="./assets/js/results.js" defer></script>
+    <script src="./assets/js/overlay.js" defer></script>
+    <script src="./assets/js/slotMachine.js" defer></script>
+    <script src="./assets/js/console.js" defer></script>
+    <script src="./assets/js/main.js" defer></script>
+    <title>Fruit Machine by robert Blackwill &copy; 2021</title>
+</head>
+
+<body>
+    <div id="game">
+        <div id="game-overlay" class="overlay hide">
+            <div class="popup noselect">No WIN!</div>
+        </div>
+        <div id="game-grid">
+            <div id="area-resultsField">
+                <div id="resultsField-grid" class="comicFont">
+                    <div id="results-title" class="grid-results-title noselect">RESULTS: </div>
+                    <div class="grid-results-item noselect">CASH💰:</div>
+                    <div class="grid-results-prefix noselect">$</div>
+                    <div class="grid-results-count noselect">100</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect"></div>
+                    <div class="grid-results-prefix opcaity-off noselect">+$</div>
+                    <div class="grid-results-count opcaity-off noselect"></div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect">SPINS:</div>
+                    <div class="grid-results-prefix noselect"></div>
+                    <div class="grid-results-count spins noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item green noselect">WINS: <span class="wins noselect">0</span></div>
+                    <div class="grid-results-prefix green noselect">$</div>
+                    <div class="grid-results-count totalWins green noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect">LAST 3 WINS:</div>
+                    <div class="grid-results-prefix noselect">$</div>
+                    <div class="grid-results-count noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect"><span class="fruits noselect"></span></div>
+                    <div class="grid-results-prefix noselect">$</div>
+                    <div class="grid-results-count noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect"><span class="fruits noselect"></span></div>
+                    <div class="grid-results-prefix noselect">$</div>
+                    <div class="grid-results-count noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect"><span class="fruits noselect"></span></div>
+                    <div class="grid-results-prefix noselect">$</div>
+                    <div class="grid-results-count noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item red noselect">LOSES: <span class="loses noselect">0</span></div>
+                    <div class="grid-results-prefix red noselect">$</div>
+                    <div class="grid-results-count totalLoses red noselect">0</div>
+                    <div class="grid-results-affix noselect"></div>
+                    <div class="grid-results-item noselect">W/L RATIO:</div>
+                    <div class="grid-results-prefix noselect"></div>
+                    <div class="grid-results-count wl-ratio noselect">0</div>
+                    <div class="grid-results-affix noselect">%</div>
+                </div>
+                <div id="resultsField-mobile" class="comicFont">
+                    <div id="mobile-optionsBtn" class="btn centered noselect"><button class="whtTxt"
+                            onclick="game.playField.notIMPLEMENTD()">OPTIONS</button></div>
+                </div>
+            </div>
+            <div id="area-playField">
+                <div id="playField-grid">
+                    <div id="arrow1" class="arrow-left indicators noselect">▲</div>
+                    <div id="arrow2" class="arrow-left indicators noselect">▲</div>
+                    <div id="arrow3" class="arrow-left indicators noselect">▲</div>
+                    <div id="arrow4" class="arrow-right indicators noselect">▲</div>
+                    <div id="arrow5" class="arrow-right indicators noselect">▲</div>
+                    <div id="arrow6" class="arrow-right indicators noselect">▲</div>
+                    <div id="options" class="options centered comicFont noselect">OPTIONS</div>
+                    <div id="reel1" class="reel centeredH noselect"></div>
+                    <div id="reel2" class="reel centeredH noselect"></div>
+                    <div id="reel3" class="reel centeredH noselect"></div>
+                    <div id="holdBtn1" class="btn centered noselect"><button class="btnHold whtTxt holdNormal"
+                            data-reel-number="0" onclick="game.playField.toogleHoldBtnClick(this)"
+                            disabled>HOLD!</button></div>
+                    <div id="holdBtn2" class="btn centered noselect"><button class="btnHold whtTxt holdNormal"
+                            data-reel-number="1" onclick="game.playField.toogleHoldBtnClick(this)"
+                            disabled>HOLD!</button></div>
+                    <div id="holdBtn3" class="btn centered noselect"><button class="btnHold whtTxt holdNormal"
+                            data-reel-number="2" onclick="game.playField.toogleHoldBtnClick(this)"
+                            disabled>HOLD!</button></div>
+                    <div id="spinBtn" class="btn centered noselect"><button class="whtTxt"
+                            onclick="game.playField.spinBtnClick()">SPIN!</button></div>
+                </div>
+            </div>
+            <div id="area-rulesField">
+                <div id="rulesField-grid" class="comicFont">
+                    <div id="rules-title" class="grid-rules-title noselect">RULES: </div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                    <div class="grid-rules-item noselect"></div>
+                    <div class="grid-rules-fruit noselect"></div>
+                    <div class="grid-rules-amount noselect"></div>
+                </div>
+                <div id="rulesField-mobile" class="comicFont">
+                    <div id="mobile-rulesSpinBtn" class="btn centered noselect"><button class="whtTxt"
+                            onclick="game.playField.spinBtnClick()">SPIN!</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
+
